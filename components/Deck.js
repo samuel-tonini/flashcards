@@ -1,18 +1,32 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { blue, white, gray } from "../utils/colors";
+import { getDeck } from "../utils/api";
 
 export default class Deck extends Component {
+  state = {
+    deck: null
+  };
+
   static navigationOptions = ({ navigation }) => {
     const { deck } = navigation.state.params;
 
     return {
-      title: deck.title
+      title: deck
     };
   };
 
+  async componentDidMount() {
+    const { deck: title } = this.props.navigation.state.params;
+    await getDeck(title).then(deck => this.setState({ deck }));
+  }
+
   render() {
-    const { deck } = this.props.navigation.state.params;
+    const { deck } = this.state;
+
+    if (deck === null) {
+      return null;
+    }
 
     return (
       <View style={styles.container}>
@@ -20,7 +34,14 @@ export default class Deck extends Component {
         <Text style={styles.card}>
           {deck.questions ? deck.questions.length : 0} cards
         </Text>
-        <TouchableOpacity style={styles.addCardbutton}>
+        <TouchableOpacity
+          style={styles.addCardbutton}
+          onPress={() => {
+            this.props.navigation.navigate("CardAdd", {
+              deckTitle: deck.title
+            });
+          }}
+        >
           <Text style={styles.addCardButtonText}>ADD CARD</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.quizButton}>

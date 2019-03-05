@@ -15,9 +15,7 @@ export default class DeckList extends Component {
   };
 
   componentDidFocus = async () => {
-    await getDecks()
-      .then(value => JSON.parse(value))
-      .then(decks => this.setState({ decks }));
+    await getDecks().then(decks => this.setState({ decks }));
   };
 
   componentDidMount() {
@@ -44,7 +42,7 @@ export default class DeckList extends Component {
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
               onPress={() => {
-                this.props.navigation.navigate("Deck", { deck: item });
+                this.props.navigation.navigate("Deck", { deck: item.title });
               }}
             >
               <View style={styles.itemContainer}>
