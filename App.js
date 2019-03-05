@@ -10,6 +10,7 @@ import {
 import DeckNew from "./components/DeckNew";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import DeckList from "./components/DeckList";
+import Deck from "./components/Deck";
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -68,6 +69,15 @@ const Tabs = createMaterialTopTabNavigator(
 const Stack = createStackNavigator({
   Home: {
     screen: Tabs
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue
+      }
+    }
   }
 });
 

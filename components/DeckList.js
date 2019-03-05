@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableWithoutFeedback
+} from "react-native";
 import { getDecks } from "../utils/api";
 import { blue, gray } from "../utils/colors";
 
@@ -36,12 +42,18 @@ export default class DeckList extends Component {
         <FlatList
           data={Object.values(decks)}
           renderItem={({ item }) => (
-            <View style={styles.itemContainer}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.card}>
-                {item.questions ? item.questions.length : 0} cards
-              </Text>
-            </View>
+            <TouchableWithoutFeedback
+              onPress={() => {
+                this.props.navigation.navigate("Deck", { deck: item });
+              }}
+            >
+              <View style={styles.itemContainer}>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.card}>
+                  {item.questions ? item.questions.length : 0} cards
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
           )}
           keyExtractor={item => item.title}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
