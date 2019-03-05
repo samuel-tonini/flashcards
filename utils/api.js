@@ -3,13 +3,11 @@ import { AsyncStorage } from "react-native";
 const DECK_KEY = "Flashcards:decks";
 
 export function getDecks() {
-  return AsyncStorage.getItem(DECK_KEY);
+  return AsyncStorage.getItem(DECK_KEY).then(value => JSON.parse(value));
 }
 
 export function getDeck(title) {
-  return getDecks().then(decks =>
-    Object.keys(decks).filter(deck => deck.title === title)
-  );
+  return getDecks().then(decks => decks[title]);
 }
 
 export function saveDeckTitle(title) {
