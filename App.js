@@ -11,6 +11,7 @@ import DeckNew from "./components/DeckNew";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import DeckList from "./components/DeckList";
 import Deck from "./components/Deck";
+import CardAdd from "./components/CardAdd";
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -73,6 +74,16 @@ const Stack = createStackNavigator({
   Deck: {
     screen: Deck,
     navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue
+      }
+    }
+  },
+  CardAdd: {
+    screen: CardAdd,
+    navigationOptions: {
+      title: "Add Card",
       headerTintColor: white,
       headerStyle: {
         backgroundColor: blue

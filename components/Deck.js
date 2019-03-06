@@ -16,9 +16,19 @@ export default class Deck extends Component {
     };
   };
 
-  async componentDidMount() {
+  componentDidFocus = async () => {
     const { deck: title } = this.props.navigation.state.params;
     await getDeck(title).then(deck => this.setState({ deck }));
+  };
+
+  componentDidMount() {
+    this.subs = [
+      this.props.navigation.addListener("didFocus", this.componentDidFocus)
+    ];
+  }
+
+  componentWillUnmount() {
+    this.subs.forEach(sub => sub.remove());
   }
 
   render() {
@@ -38,7 +48,7 @@ export default class Deck extends Component {
           style={styles.addCardbutton}
           onPress={() => {
             this.props.navigation.navigate("CardAdd", {
-              deckTitle: deck.title
+              deck: deck.title
             });
           }}
         >
