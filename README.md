@@ -1,4 +1,4 @@
-## Descripition
+## Descrição
 
 Projeto criado para o módulo de React Native do Nanodegree de React da Udacity.
 
