@@ -38,12 +38,12 @@ export default class Deck extends Component {
       return null;
     }
 
+    const totalQuestions = deck.questions ? deck.questions.length : 0;
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.card}>
-          {deck.questions ? deck.questions.length : 0} cards
-        </Text>
+        <Text style={styles.card}>{totalQuestions} cards</Text>
         <TouchableOpacity
           style={styles.addCardbutton}
           onPress={() => {
@@ -54,9 +54,18 @@ export default class Deck extends Component {
         >
           <Text style={styles.addCardButtonText}>ADD CARD</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.quizButton}>
-          <Text style={styles.quizButtonText}>START QUIZ</Text>
-        </TouchableOpacity>
+        {totalQuestions > 0 && (
+          <TouchableOpacity
+            style={styles.quizButton}
+            onPress={() => {
+              this.props.navigation.navigate("CardQuestion", {
+                deck: deck.title
+              });
+            }}
+          >
+            <Text style={styles.quizButtonText}>START QUIZ</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
