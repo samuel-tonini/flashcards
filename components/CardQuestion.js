@@ -44,9 +44,6 @@ export default class CardQuestion extends Component {
 
     const totalQuestions = deck.questions.length;
 
-    console.log("totalQuestions", totalQuestions);
-    console.log("cardIndex", cardIndex);
-
     if (cardIndex >= totalQuestions) {
       return (
         <View style={styles.resultContainer}>
