@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
 import { blue, white } from "../utils/colors";
 import { saveDeckTitle } from "../utils/api";
 
-export default class DeckNew extends Component {
+export default class DeckNew extends PureComponent {
   state = {
     title: ""
   };

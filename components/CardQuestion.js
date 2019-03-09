@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
 import { blue, white, gray, green, red } from "../utils/colors";
 import { addCardToDeck, getDeck } from "../utils/api";
 
-export default class CardQuestion extends Component {
+export default class CardQuestion extends PureComponent {
   state = {
     showAnswer: false,
     cardIndex: 0,
@@ -19,7 +19,8 @@ export default class CardQuestion extends Component {
 
   async componentDidMount() {
     const { deck: title } = this.props.navigation.state.params;
-    await getDeck(title).then(deck => this.setState({ deck }));
+    const deck = await getDeck(title);
+    this.setState({ deck });
   }
 
   handleToggleShowAnswer = () => {

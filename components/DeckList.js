@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
   View,
   Text,
@@ -9,13 +9,14 @@ import {
 import { getDecks } from "../utils/api";
 import { blue, gray } from "../utils/colors";
 
-export default class DeckList extends Component {
+export default class DeckList extends PureComponent {
   state = {
     decks: null
   };
 
   componentDidFocus = async () => {
-    await getDecks().then(decks => this.setState({ decks }));
+    const decks = await getDecks();
+    this.setState({ decks });
   };
 
   componentDidMount() {

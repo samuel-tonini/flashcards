@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { blue, white, gray } from "../utils/colors";
 import { getDeck } from "../utils/api";
 
-export default class Deck extends Component {
+export default class Deck extends PureComponent {
   state = {
     deck: null
   };
@@ -18,7 +18,8 @@ export default class Deck extends Component {
 
   componentDidFocus = async () => {
     const { deck: title } = this.props.navigation.state.params;
-    await getDeck(title).then(deck => this.setState({ deck }));
+    const deck = await getDeck(title);
+    this.setState({ deck });
   };
 
   componentDidMount() {

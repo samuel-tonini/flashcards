@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
 import { blue, white } from "../utils/colors";
 import { addCardToDeck } from "../utils/api";
 
-export default class CardAdd extends Component {
+export default class CardAdd extends PureComponent {
   state = {
     question: "",
     answer: ""
