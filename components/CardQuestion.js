@@ -53,12 +53,24 @@ export default class CardQuestion extends Component {
           <TouchableOpacity
             style={styles.return}
             onPress={() => {
+              this.setState({
+                showAnswer: false,
+                cardIndex: 0,
+                totalCorrect: 0
+              });
+            }}
+          >
+            <Text style={styles.answerButtonText}>RESTART QUIZ</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.return}
+            onPress={() => {
               this.props.navigation.navigate("Deck", {
                 deck: title
               });
             }}
           >
-            <Text style={styles.answerButtonText}>GO TO DECK</Text>
+            <Text style={styles.answerButtonText}>BACK TO DECK</Text>
           </TouchableOpacity>
         </View>
       );
