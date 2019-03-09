@@ -22,7 +22,7 @@ export default class DeckNew extends Component {
     const { title } = this.state;
     this.setState({ title: "" });
     saveDeckTitle(title);
-    this.props.navigation.navigate("DeckList");
+    this.props.navigation.navigate("Deck", { deck: title });
   };
 
   render() {
